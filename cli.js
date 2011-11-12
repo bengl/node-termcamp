@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var Campfire = require('campfire').Campfire,
 		cli = require('cli'),
 		options = cli.parse(),
