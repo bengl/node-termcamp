@@ -1,0 +1,19 @@
+{
+  "author": "Bryan English <bryan@bryanenglish.com> (http://about.me/bengl)",
+  "name": "campfire-cli",
+  "description": "A command-line interface for Campfire.",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bengl/node-campfire-cli.git"
+  },
+  "engines": {
+    "node": "~0.6.0"
+  },
+  "dependencies": {
+		"campfire":"0.1.0",
+		"cli":"0.3.7",
+		"colors":"0.5.1"	
+	},
+  "devDependencies": {}
+}
