@@ -8,13 +8,13 @@
     "url": "git://github.com/bengl/node-termcamp.git"
   },
   "preferGlobal" : true,
-	"engines": {
+  "engines": {
     "node": "~0.6.0"
   },
   "dependencies": {
-		"campfire":"0.1.0",
-		"cli":"0.3.7",
-		"colors":"0.5.1"	
-	},
-	"bin": { "termcamp": "./cli.js" }
+    "campfire":"0.1.0",
+    "cli":"0.3.7",
+    "colors":"0.5.1"  
+  },
+  "bin": { "termcamp": "./cli.js" }
 }
