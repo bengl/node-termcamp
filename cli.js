@@ -10,31 +10,35 @@ var Campfire = require('campfire').Campfire,
 
 // Gets a user by id (either from memory or API) and calls the callback with the user.
 doUser = function(id,callback){
-  if (users[id]) callback(users[id]);
+  if (users[id])
+    callback(users[id]);
   else
     fire.user(id,function(error,user){
-      if (error) console.log(error);
-      else callback(users[id] = user.user);
+      if (error)
+        console.log(error);
+      else
+        callback(users[id] = user.user);
     });
 };
 
 // Calls the callback with a console-formatted version of the message from API.
 putMessage = function(message,callback){
   var left = false;
-  switch (message.type) {
-    case "TimestampMessage":
+  callback = callback ? callback : console.log;
+  switch (message.type.replace(/Message/,'') {
+    case "Timestamp":
       callback(message.createdAt.toString().blue);
       break;
-    case "KickMessage":
+    case "Kick":
       // For now deal with it like a LeaveMessage. Campfire seems to do the same.
-    case "LeaveMessage":
+    case "Leave":
       left = true;
-    case "EnterMessage":
+    case "Enter":
       doUser(message.userId,function(user){
         callback(('* '+user.name).green+(' has '+(left?'left':'entered')+' the room.').magenta);
       });
       break;
-    case "TextMessage":
+    case "Text":
       doUser(message.userId,function(user){
         callback((user.name+': ').green+message.body.white.bold);
       });
@@ -49,9 +53,8 @@ if (options.u && options.r && options.t) {
   roomid = options.r;
   token = options.t;
 } else {
-  var opts;
-  if (options.f) opts = JSON.parse(fs.readFileSync(options.f));
-  else opts = JSON.parse(fs.readFileSync(process.env.HOME+'/.campfire.json'));
+  var file = options.f ? options.f : process.env.HOME+'/.campfire.json',
+      opts = JSON.parse(fs.readFileSync(file));
   account = opts.subdomain;
   roomid = opts.roomid;
   token = opts.token;
@@ -72,18 +75,19 @@ fire.join(roomid,function(error,room){
   // For the recent messages, this weird recursion is necessary to put them in order, due to the
   // asynchronous nature of both console.log and getting the user name.
   room.messages(function(error,messages){
-    var i = -1;
     var next = function(body){
-      if (i < messages.length) console.log(body);
-      if (++i != messages.length) putMessage(messages[i],next);
+      console.log(body);
+      if (messages.length != 0)
+        putMessage(messages.shift(),next);
     }
-    putMessage(messages[0],next);
+    next("Starting...");
   });
 
-  room.listen(function(message){putMessage(message,console.log)});
+  room.listen(putMessage);
 
   // Need a better REPL-like thing here, but at least this makes it useable.
   cli.withInput(function(line, newline, eof){
-    if (!eof && line != "") room.message(line,'TextMessage');
+    if (!eof && line != "")
+      room.message(line,'TextMessage');
   });
 });
