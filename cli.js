@@ -25,7 +25,7 @@ doUser = function(id,callback){
 putMessage = function(message,callback){
   var left = false;
   callback = callback ? callback : console.log;
-  switch (message.type.replace(/Message/,'') {
+  switch (message.type.replace(/Message/,'')) {
     case "Timestamp":
       callback(message.createdAt.toString().blue);
       break;
