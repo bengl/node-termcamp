@@ -98,7 +98,7 @@
     // strict way to enforce these.
     
     "maxlen"        : 80,       // Maximum line length, helps reduce cyclomatic complexity
-    "indent"        : 2,        // Specify indentation spacing
+    "indent"        : 4,        // Specify indentation spacing
     "maxparams"     : 20,       // Maximum number of formal parameters allowed per function
     "maxdepth"      : 4,        // Maximum nested statement depth for a function
     "maxstatements" : 33,       // Maximum number of statements allowed per function
@@ -113,7 +113,7 @@
     "nomen"         : false,    // Prohibit use of initial or trailing underbars in names.
     "onevar"        : true,     // Allow only one `var` statement per function.
     "passfail"      : false,    // Stop on first error.
-    "white"         : false,    // Check against strict whitespace and indentation rules.
+    "white"         : true,    // Check against strict whitespace and indentation rules.
     
     // == Undocumented Options ============================================
     //
