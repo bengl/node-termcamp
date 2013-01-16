@@ -2,19 +2,35 @@
   "author": "Bryan English <bryan@bryanenglish.com> (http://about.me/bengl)",
   "name": "termcamp",
   "description": "A command-line interface for Campfire.",
-  "version": "0.0.1",
+  "contributors": [
+    {
+      "name": "Craig Davis",
+      "email": "craig@there4development.com"
+    }
+  ],
+  "keywords": [
+    "cli",
+    "campfire"
+  ],
+  "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/bengl/node-termcamp.git"
   },
-  "preferGlobal" : true,
+  "preferGlobal": true,
   "engines": {
     "node": "~0.6.0"
   },
   "dependencies": {
-    "campfire":"0.1.0",
-    "cli":"0.3.7",
-    "colors":"0.5.1"  
+    "campfire": "0.1.0",
+    "cli": "0.3.7",
+    "colors": "0.5.1",
+    "moment": "~1.7.2",
+    "underscore": "~1.4.3",
+    "underscore.string": "~2.3.1"
   },
-  "bin": { "termcamp": "./cli.js" }
+  "bin": {
+    "termcamp": "./cli.js"
+  },
+  "license": "MIT"
 }
