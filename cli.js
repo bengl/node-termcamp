@@ -153,7 +153,7 @@ var nodeTerm = (function () {
                 formattedMessage = _.sprintf(
                     "%s%s",
                     _.repeat(" ", config.leftColumn),
-                    Formatters.messageColumn(message.body.white.bold)
+                    Formatters.messageColumn(message.body.blue.bold)
                 );
             }
             else {
@@ -161,7 +161,7 @@ var nodeTerm = (function () {
                 formattedMessage = _.sprintf(
                     ("%s:")[user.color] + " %s",
                     Formatters.userColumn(user.name),
-                    Formatters.messageColumn(message.body.white.bold)
+                    Formatters.messageColumn(message.body.blue.bold)
                 );
             }
             printer(formattedMessage + Formatters.appendAlert(message.body));
