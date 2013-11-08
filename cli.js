@@ -8,7 +8,13 @@ var
     moment      = require('moment'),
     _           = require('underscore'),
     _s          = require('underscore.string'),
-    cliOptions  = cli.parse(),
+    cliOptions  = cli.parse({
+        "file"      : ["f", "config file", "string"],
+        "subdomain" : ["s", "Your Campfire subdomain", "string"],
+        "roomid"    : ["r", "The chat room ID", "string"],
+        "token"     : ["t", "Your campfire token", "string"]
+
+    }),
     initOptions = {},
     configFile;
 
@@ -384,16 +390,16 @@ var nodeTerm = (function () {
 }());
 
 // subdomain, roomid, token
-if (cliOptions.s && cliOptions.r && cliOptions.t) {
+if (cliOptions.subdomain && cliOptions.roomid && cliOptions.token) {
     initOptions = {
-        subdomain : cliOptions.s,
-        roomid    : cliOptions.r,
-        token     : cliOptions.t
+        subdomain : cliOptions.subdomain,
+        roomid    : cliOptions.roomid,
+        token     : cliOptions.token
     };
 } else {
     // If they specified a config file on the command line via -f
-    configFile = cliOptions.f ?
-        cliOptions.f :
+    configFile = cliOptions.file ?
+        cliOptions.file :
         process.env.HOME + '/.campfire.json';
 
     initOptions = JSON.parse(fs.readFileSync(configFile));
