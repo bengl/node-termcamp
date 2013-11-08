@@ -311,6 +311,7 @@ var nodeTerm = (function () {
             campfire.me(function (response, me) {
                 var firstName = me.user.name.split(" ")[0];
                 currentUser = me.user;
+                if (config.alerts === undefined) config.alerts = [];
                 config.alerts.push(firstName);
             });
         },
